@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   inference:
-    container_name: inference_test
+    container_name: inference
     build: .
     command: python -u /app/app.py
     ports:
@@ -16,7 +16,7 @@ services:
       - ./models:/app/models
 
   worker:
-    container_name: worker_test
+    container_name: worker
     image: alloranetwork/allora-offchain-node:v0.12.0
     volumes:
       - ./worker-data:/data
