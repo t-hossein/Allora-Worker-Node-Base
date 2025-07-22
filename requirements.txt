@@ -1,0 +1,6 @@
+flask[async]
+gunicorn[gthread]
+Requests
+aiohttp
+multiprocess
+requests

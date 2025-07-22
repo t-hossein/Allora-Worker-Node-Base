@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  inference:
+    container_name: inference_test
+    build: .
+    command: python -u /app/app.py
+    ports:
+      - "8008:8008"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://inference:8008/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./inference-data:/app/data
+      - ./models:/app/models
+
+  worker:
+    container_name: worker_test
+    image: alloranetwork/allora-offchain-node:v0.12.0
+    volumes:
+      - ./worker-data:/data
+    depends_on:
+      inference:
+        condition: service_healthy
+    env_file:
+      - ./worker-data/env_file
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "find /data/logs -mmin -7 | grep . || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 2
+
+volumes:
+  inference-data:
+  worker-data:

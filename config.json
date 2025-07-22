@@ -1,0 +1,46 @@
+{
+    "wallet": {
+
+      "chainId": "allora-testnet-1",
+      "keyringBackend": "test",
+      "keyringPassphrase": "",
+      "addressKeyName": "testkey",
+      "addressRestoreMnemonic": "YOUR MNEMONIC",
+      "feeGranterAddress": "",
+      "alloraHomeDir": "",
+      "gasPrices": "auto",
+      "gasPriceUpdateInterval": 5,
+      "maxFees": 50000000,
+      "gasAdjustment": 1.2,
+      "simulateGasFromStart": true,
+      "GasPerByte": 1,
+      "BaseGas": 200000,
+      "nodeRpcs": ["https://allora-rpc.monallo.ai"],
+      "nodegRpcs": ["allora-grpc.monallo.ai:443"],
+      "maxRetries": 5,
+      "retryDelay": 3,
+      "accountSequenceRetryDelay": 1,
+      "launchRoutineDelay": 5,
+      "submitTx": true,
+      "blockDurationEstimated": 6,
+      "windowCorrectionFactor": 0.8,
+      "timeoutRPCSecondsQuery": 60,
+      "timeoutRPCSecondsTx": 300,
+      "timeoutRPCSecondsRegistration": 300,
+      "timeoutHTTPConnection": 10
+    },
+    "worker": [
+                        {
+            "topicId": 13,
+            "inferenceEntrypointName": "apiAdapter",
+            "loopSeconds": 5,
+            "parameters": {
+                "InferenceEndpoint": "http://inference:8008/inference/{Token}",
+                "Token": "ETH"
+            }
+        }  
+        
+    ]
+    
+}
+ 
